@@ -3,193 +3,232 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PAYMENT SMART</title>
+  <title>YORIE HOSTING</title>
   <style>
-    * { box-sizing: border-box; }
     body {
+      background: #111;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
-      overflow-x: hidden;
-      position: relative;
     }
-    #bgVideo {
-      position: fixed;
-      right: 0;
-      bottom: 0;
-      min-width: 100%;
-      min-height: auto; /* Adjusted for mobile */
-      z-index: -1;
-      object-fit: cover;
-      opacity: 0.5;
-    }
-    .loading-screen {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-    }
-    .spinner {
-      border: 6px solid #333;
-      border-top: 6px solid cyan;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      animation: spin 1s linear infinite;
-      margin-bottom: 20px;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .btn-start {
-      padding: 12px 25px;
-      font-size: 18px;
-      background-color: cyan;
-      border: none;
-      border-radius: 8px;
+    h1 {
+      margin-top: 10px;
+      font-size: 28px;
       font-weight: bold;
-      cursor: pointer;
-      color: #000;
-      margin-top: 20px;
+      animation: glitch 1.5s infinite;
     }
-    .page {
-      display: none;
-      padding: 30px 20px;
-      text-align: center;
-      animation: fadeIn 0.8s ease-in-out;
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px red, -2px -2px blue; }
+      25% { text-shadow: -2px 2px lime, 2px -2px cyan; }
+      50% { text-shadow: 2px -2px yellow, -2px 2px magenta; }
+      75% { text-shadow: -1px -1px white, 1px 1px gray; }
+      100% { text-shadow: 2px 2px red, -2px -2px blue; }
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .profile-img {
+    .photo {
       width: 120px;
       height: 120px;
+      object-fit: cover;
       border-radius: 50%;
-      border: 4px solid cyan;
-      box-shadow: 0 0 25px cyan;
-      margin: 0 auto 15px;
-      display: block;
+      border: 3px solid white;
+      margin: 20px auto 10px;
     }
-    h2 {
-      color: cyan;
-      margin-bottom: 30px;
-      text-shadow: 0 0 10px cyan;
+    ul {
+      list-style: none;
+      padding: 0;
     }
-    .pay-btn {
-      display: block;
-      width: 80%;
+    li {
+      background: #222;
       margin: 10px auto;
-      padding: 14px;
-      border: none;
+      padding: 12px 18px;
+      width: 80%;
       border-radius: 12px;
-      background-color: #111;
+      font-size: 15px;
+      text-align: left;
+    }
+    .payment {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 15px;
+      margin: 30px auto;
+      width: 85%;
+    }
+    .qris {
+      width: 250px;
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+    .pay-box {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .pay-item {
+      background: #222;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    .btn {
+      background: #00aaee;
+      border: none;
       color: white;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0 0 12px cyan;
+      padding: 5px 10px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: 0.3s ease;
-      animation: pulseGlow 2s infinite;
+      margin-left: 10px;
     }
-    @keyframes pulseGlow {
-      0% { box-shadow: 0 0 12px cyan; }
-      50% { box-shadow: 0 0 25px cyan; }
-      100% { box-shadow: 0 0 12px cyan; }
+    .btn:hover {
+      background: #0077aa;
     }
-    .pay-btn:hover {
-      background-color: cyan;
-      color: #000;
-      box-shadow: 0 0 20px cyan;
-    }
-    .wa-btn {
+    a.download-btn, button.download-btn {
       display: inline-block;
-      margin-top: 30px;
-      padding: 12px 25px;
-      background-color: #25D366;
-      color: #000;
-      font-weight: bold;
+      background: #28a745;
+      color: white;
+      padding: 8px 15px;
+      margin-top: 10px;
+      border-radius: 6px;
       text-decoration: none;
+      cursor: pointer;
+    }
+    a.download-btn:hover, button.download-btn:hover {
+      background: #1e7e34;
+    }
+    .snow span {
+      position: fixed;
+      color: white;
+      animation: fall 10s linear infinite;
+      font-size: 18px;
+      z-index: 999;
+    }
+    @keyframes fall {
+      0% { top: -10px; opacity: 0; }
+      50% { opacity: 1; }
+      100% { top: 110vh; opacity: 0; }
+    }
+    .promo {
+      background: #ff0066;
+      padding: 10px 15px;
       border-radius: 10px;
-      box-shadow: 0 0 10px #25D366;
-      transition: 0.3s ease;
+      margin: 20px auto;
+      width: fit-content;
+      font-weight: bold;
+      animation: blink 1.5s infinite alternate;
     }
-    .wa-btn:hover {
-      background-color: #1ebe5d;
-      box-shadow: 0 0 20px #25D366;
+    @keyframes blink {
+      0% { opacity: 1; }
+      100% { opacity: 0.5; }
     }
-    .footer {
-      margin-top: 40px;
-      font-size: 12px;
-      color: #888;
+    .habis-label {
+      background: linear-gradient(45deg, #ff0033, #cc0000);
+      color: white;
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 11px;
+      margin-left: 8px;
+      font-weight: bold;
+      text-transform: uppercase;
+      box-shadow: 0 0 8px red;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
 <body>
 
-<!-- Video Background -->
-<video autoplay muted loop id="bgVideo">
-  <source src="https://files.catbox.moe/umh9gr.mp4" type="video/mp4">
-  Browser Anda tidak mendukung tag video.
-</video>
+  <!-- Efek Salju -->
+  <div class="snow">
+    <span style="left: 5%; animation-delay: 0s;">❄</span>
+    <span style="left: 20%; animation-delay: 2s;">❄</span>
+    <span style="left: 40%; animation-delay: 4s;">❄</span>
+    <span style="left: 60%; animation-delay: 1s;">❄</span>
+    <span style="left: 80%; animation-delay: 3s;">❄</span>
+  </div>
 
-<audio id="bgm" src="https://files.catbox.moe/9e2oet.mp3"></audio>
+  <!-- Musik -->
+  <audio autoplay loop hidden>
+    <source src="https://files.catbox.moe/gqtgt7.mp3" type="audio/mpeg">
+  </audio>
 
-<!-- Loading Screen -->
-<div class="loading-screen" id="loadingScreen">
-  <div class="spinner"></div>
-  <h2>Loading to Payment...</h2>
-  <button class="btn-start" onclick="goToPayment()">Go to Payment</button>
-</div>
+  <!-- Profil & Judul -->
+  <img src="https://files.catbox.moe/u6tczy.jpg" alt="Yorie Profile" class="photo" />
+  <h1>YORIE HOSTING</h1>
+  <p>PANEL | SCRIPT BOT | SUNTIK SOSMED | CREATE WEB | DLL</p>
 
-<!-- Payment Page -->
-<div class="page" id="paymentPage">
-  <img src="https://telegra.ph/file/6176c9f20d8478ec47c28.jpg" alt="Profile" class="profile-img">
-  <h2>Payment SMART</h2>
+  <!-- Promo -->
+  <div class="promo">🔥 Promo Juli: Diskon 30% Suntik Sosmed!</div>
 
-  <button class="pay-btn" onclick="copyToClipboard('081290802585')">DANA</button>
-  <button class="pay-btn" onclick="copyToClipboard('081290802585')">OVO</button>
-  <button class="pay-btn" onclick="copyToClipboard('081290802585')">GOPAY</button>
+  <!-- Layanan -->
+  <ul>
+    <li>🤖 Panel Bot WhatsApp <span class="habis-label">Stok Habis</span></li>
+    <li>⚙️ Script Bot / API</li>
+    <li>💻 Web Custom<span class="STOCK SOLD-label">Stok lagi kosong < 
+    <li>📞 Nokos Indo</li>
+    <li>📲 Suntik Sosmed</li>
+    <li>📂 Hosting Script</li>
+  </ul>
 
-  <a href="https://wa.me/6281290802585" target="_blank" class="wa-btn">Hubungi Admin via WhatsApp</a>
+  <!-- Pembayaran -->
+  <div class="payment">
+    <h2>Metode Pembayaran</h2>
+    <p>Scan QRIS</p>
+    <img src="https://telegra.ph/file/e65ffd460d9684baf42f6.jpg" alt="QRIS Smart" class="qris" />
+    <br>
+    <a class="download-btn" href="" download>⬇ Download QRIS</a>
 
-  <div class="footer">© Powered by SMART || Official</div>
-</div>
+    <!-- Upload Bukti -->
+    <br><br>
+    <h3>Upload Bukti Pembayaran (Otomatis ke WhatsApp)</h3>
+    <form action="https://formsubmit.co/fathirj32@gmail.com" method="POST" enctype="multipart/form-data" onsubmit="return handleUpload()">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="Bukti Pembayaran dari Pelanggan">
+      <input type="hidden" name="_next" id="next-link" value="#">
+      <input type="file" name="attachment" id="fileInput" accept="image/*,.pdf" required><br><br>
+      <button type="submit" class="download-btn">📤 Upload & Kirim ke Bukti TF Ke Admin</button>
+    </form>
 
-<script>
-  function goToPayment() {
-    document.getElementById('bgm').play();
-    document.getElementById('loadingScreen').style.display = 'none';
-    document.getElementById('paymentPage').style.display = 'block';
-  }
+    <!-- Dana & Gopay -->
+    <div class="pay-box">
+      <div class="pay-item">
+        Dana: <span id="dana">081290802585</span>
+        <button class="btn" onclick="salin('dana')">SALIN</button>
+      </div>
+      <div class="pay-item">
+        Gopay: <span id="gopay">081290802585</span>
+        <button class="btn" onclick="salin('gopay')">SALIN</button>
+      </div>
+    </div>
+  </div>
 
-  function copyToClipboard(nomor) {
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(nomor)
-        .then(() => alert("✅ Nomor berhasil disalin:\n" + nomor))
-        .catch(() => fallbackCopy());
-    } else {
-      fallbackCopy();
+  <!-- Kontak CS -->
+  <br>
+  <a class="download-btn" href="https://wa.me/6281290802585?text=Halo%20admin%2C%20saya%20mau%20tanya%20tentang%20layanan%20YORIE%20HOSTING" target="_blank">💬 Chat CS Sekarang</a>
+
+  <!-- Script -->
+  <script>
+    function salin(id) {
+      const text = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Nomor berhasil disalin: " + text);
+      });
     }
 
-    function fallbackCopy() {
-      const temp = document.createElement("textarea");
-      temp.value = nomor;
-      document.body.appendChild(temp);
-      temp.select();
-      try {
-        document.execCommand("copy");
-        alert("Kirim bukti transfer ke admin:\n" + nomor);
-      } catch {
-        alert("❌ Gagal menyalin nomor.");
-      }
-      document.body.removeChild(temp);
+    function handleUpload() {
+      const fileInput = document.getElementById('fileInput');
+      const fileName = fileInput.files[0]?.name || 'Bukti Pembayaran';
+      const whatsappLink = `https://wa.me/6281290802585?text=Halo%20kak%2C%20saya%20sudah%20melakukan%20pembayaran.%0ABukti%3A%20*${fileName}*%0ATolong%20cek%20ya~`;
+      document.getElementById('next-link').value = whatsappLink;
+      return true;
     }
-  }
-</script>
+  </script>
+
 </body>
 </html>
